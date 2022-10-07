@@ -14,6 +14,7 @@ const App = () => {
         <Route path='/auth/register_user' element={<Auth_pages.Pages.Reg_user />}/> 
         <Route path='/auth/question_teacher' element={<Auth_pages.Pages.Questions_teacher />}/> 
         <Route path='/auth/login' element={<Auth_pages.Pages.Login_user />}/> 
+        <Route path='/auth/forgot' element={<Auth_pages.Pages.Forgot />}/> 
       </Routes>
     </div>
   )

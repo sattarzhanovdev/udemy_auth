@@ -1,7 +1,9 @@
 import React from 'react'
-import { AiFillEye } from 'react-icons/ai'
+import { AiFillEye, AiOutlineGoogle } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import './style.scss'
+import { FcGoogle } from 'react-icons/fc'
+import { BsFacebook, BsApple } from 'react-icons/bs'
 
 const Login_user: React.FC = () => {
   const [ name, setName ] = React.useState('')
@@ -43,8 +45,27 @@ const Login_user: React.FC = () => {
   return (
     <div className='teacher-register'>
       <div className='up'>
-        <h4>Зарегистрируйтесь и начните обучение</h4>
+        <h4>Вход в учетную запись Udemy</h4>
       </div>
+      <span 
+        className='line'
+        style={{
+          marginBottom: '15px',
+        }}
+      ></span>
+
+      <div className='method'>
+        <button>
+          <BsFacebook /> <span>Войти через Facebook</span>
+        </button>
+        <button>
+          <FcGoogle /> <span>Войти через Google</span>
+        </button>
+        <button className='apple'>
+          <BsApple /> <span>Войти через Google</span>
+        </button>
+      </div>
+
       <form>
         <div>
           <input 
@@ -80,19 +101,13 @@ const Login_user: React.FC = () => {
         Войти
       </button>
       <p>{error}</p>
-      <p>
-        Выполняя вход, вы соглашаетесь с нашими <span>Условиями <br />
-        использования</span> и <span>Политикой конфиденциальности</span>.
-      </p>
-      <span className='line'></span>
-      
       <div className='have_an_acc'>
-        <p>Уже есть учетная запись?</p>
+        <p>или</p>
         <p>
           <Link
-            to={'/auth/login'}
+            to={'/auth/forgot'}
           >
-            Вход
+            Забыли пароль?
           </Link>
         </p>
       </div>
