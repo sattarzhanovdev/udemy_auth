@@ -1,0 +1,27 @@
+.questions{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .ask{
+    width: 850px;
+    div{
+      display: flex;
+      justify-content: space-around;
+      form{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        div{
+          width: 450px;
+          height: 50px;
+          border: 1px solid black;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding-left: 15px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

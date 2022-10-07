@@ -1,5 +1,9 @@
 .teacher-register{
   width: 320px;
+  @media screen and (max-width: 320px) {
+    width: 280px;
+    padding: 50px;
+  }
   padding: 25px;
   display: flex;
   align-items: flex-start;
@@ -7,6 +11,10 @@
   flex-direction: column;
   .up{
     text-align: left;
+    h4{
+      margin: 0;
+      margin-bottom: 15px;
+    }
     p{
       font-size: 12px;
       text-align: left;
@@ -15,15 +23,28 @@
   form{
     display: flex;
     flex-direction: column;
-    input{
+    div{
       width: 300px;
-      height: 40px;
-      margin-bottom: 15px;
-      padding-left: 15px;
-      border-radius: none;
-      border: 1.5px solid black;
-      outline: none;
-      color: black;
+      position: relative;
+      display: flex;
+      align-items: center;
+      input{
+        width: 300px;
+        height: 40px;
+        margin-bottom: 15px;
+        padding-left: 15px;
+        border-radius: none;
+        border: 1.5px solid black;
+        outline: none;
+        color: black;
+      }
+      li{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        list-style: none;
+        cursor: pointer;
+      }
     }
     .checking{
       display: flex;
@@ -35,6 +56,10 @@
         margin-right: 4px;
         border-radius: 5px;
       }
+      .active{
+        background: black;
+      }
+      
     }
   }
   .accept{
