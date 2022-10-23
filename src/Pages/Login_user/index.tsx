@@ -1,41 +1,29 @@
 import React from 'react'
-import { AiFillEye, AiOutlineGoogle } from 'react-icons/ai'
+import { AiFillEye } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import './style.scss'
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook, BsApple } from 'react-icons/bs'
+import { API } from '../../API'
 
 const Login_user: React.FC = () => {
-  const [ name, setName ] = React.useState('')
   const [ email, setEmail ] = React.useState('')
   const [ password, setPassword ] = React.useState('')
   const [ error, setError ] = React.useState('')
-  const [ checked, setChecked ] = React.useState(false)
   const [ show, setShow ] = React.useState(false)
   
-  const BASE_URL = 'http://34.172.10.128/api/v1/account'
 
   const account: any = {
-    name,
     email,
     password
   }
 
   const handleLogin = () => {
-    fetch(`${BASE_URL}/login/`, {
-      method:'POST',
-      body: JSON.stringify({
-        email: account.email ,
-        password: account.password ,
-      }),
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
+    API.login(account)
     .then(res => res.json())
     .then(res => {
       console.log(res)
-      setError(res.detail)
+      setError(res.detail ? res.detail : res.email ? res.email : res.password ? res.password : res.detail)
 
       localStorage.setItem('accessToken', res.access)
       localStorage.setItem('refreshToken', res.refresh)
@@ -89,12 +77,7 @@ const Login_user: React.FC = () => {
       </form>
       <button
         onClick={() => handleLogin()}
-        style={checked === false ? {
-          opacity: '0.5',
-          margin: 0
-        }:
-        {
-          opacity: '1',
+        style={{
           margin: 0
         }}
       >
@@ -108,6 +91,16 @@ const Login_user: React.FC = () => {
             to={'/auth/forgot'}
           >
             Забыли пароль?
+          </Link>
+        </p>
+      </div>
+      <div className='havent_an_acc'>
+        <p>Не зарегистрированы?</p>
+        <p>
+          <Link
+            to={'/auth/register'}
+          >
+            Регистрация
           </Link>
         </p>
       </div>

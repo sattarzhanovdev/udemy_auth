@@ -95,12 +95,13 @@ const Reg_user: React.FC = () => {
       </div>
       <button
         onClick={() => handleRegistration()}
-        style={checked === false ? {
+        style={email.length < 3 ? {
           opacity: '0.5'
         }:
         {
           opacity: '1'
         }}
+        disabled={email.length > 3 ? false : true}
       >
         Регистрация
       </button>
@@ -111,7 +112,14 @@ const Reg_user: React.FC = () => {
       </p>
       <span className='line'></span>
       
-      <div className='have_an_acc'>
+      <div 
+        className='have_an_acc'
+        style={{
+          width: '100%',
+          position: 'relative',
+          right: '20px'
+        }}
+      >
         <p>Уже есть учетная запись?</p>
         <p>
           <Link

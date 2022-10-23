@@ -1,7 +1,21 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { API } from '../../API'
+import { format_list } from '../../utils'
 import './style.scss'
 
 const Questions_teacher = () => {
+  const [ format, setFormat ] = React.useState('')
+
+  const account = localStorage.getItem('account')
+
+  const Navigate = useNavigate()
+
+  const handleContinue = () => {
+    console.log(account)
+    Navigate('/auth/auditorium')
+  }
+
   return (
     <div className='questions'>
       <div className="up">
@@ -19,18 +33,23 @@ const Questions_teacher = () => {
         </h3>
         <div>
           <form>
-            <div>
-              <label><input type="radio" name='var' /> Лично, частным образом</label>
-            </div>
-            <div>
-              <label><input type="radio" name='var' /> Лично, профессионально</label>
-            </div>
-            <div> 
-              <label><input type="radio" name='var' /> Онлайн</label>
-            </div>
-            <div>
-              <label><input type="radio" name='var' /> Другое</label>
-            </div>
+            {
+              format_list.map(({title, value}, i) => (
+                <div
+                  key={i}
+                >
+                  <label
+                    onClick={() => {
+                      setFormat(value)
+                      handleContinue()
+                    }}
+                  >
+                    <input type="radio" name='var' />
+                    {title}
+                  </label>
+                </div>
+              ))
+            }
           </form>
           <img src="/img/to_teacher_page.png" alt="" />
         </div>

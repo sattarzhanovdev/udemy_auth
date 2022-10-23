@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiFillEye } from 'react-icons/ai'
 import './style.scss'
+import { API } from '../../API'
 
 const Reg_teacher: React.FC = () => {
   const [ name, setName ] = React.useState('')
@@ -11,43 +12,19 @@ const Reg_teacher: React.FC = () => {
   const [ checked, setChecked ] = React.useState(false)
   const [ show, setShow ] = React.useState(false)
 
-  const BASE_URL = 'https://34.172.10.128/api/v1/account'
-
+  
   const account: any = {
     name,
     email,
     password
   }
+  
+  const Navigate = useNavigate()
 
   const handleRegistrationMentor = () => {
-    fetch(`${BASE_URL}/register/mentor/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        "email": account.email,
-        "first_name": account.name,
-        "last_name": '',
-        "password": account.password,
-        "password2": account.password,
-        "type": "individual not oficial",
-        "experience": "beginning",
-        "audience": "no"
-      })
-    })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-      
-      // localStorage.setItem('accessToken', res.accessToken)
-      // localStorage.setItem('refreshToken', res.refreshToken)
-      // localStorage.setItem('isActivated', res.user.isActivated)
-      // localStorage.setItem('userId', res.user.id)
-    })  
-    .catch(e => setError(e.message))
+    localStorage.setItem('account', JSON.stringify(account))
 
-    
+    Navigate('/auth/question_teacher')
   }
 
   return (
@@ -126,7 +103,14 @@ const Reg_teacher: React.FC = () => {
       </p>
       <span className='line'></span>
       
-      <div className='have_an_acc'>
+      <div 
+        className='have_an_acc'
+        style={{
+          width: '100%',
+          position: 'relative',
+          right: '30px'
+        }}
+      >
         <p>Уже есть учетная запись?</p>
         <p>
           <Link

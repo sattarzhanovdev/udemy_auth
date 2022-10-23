@@ -1,8 +1,9 @@
-import React from 'react'
-import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import { Auth_pages } from './Pages'
-import axios from 'axios'
+import './App.scss'
+import axios from "axios";
+
+axios.defaults.baseURL = 'http://34.172.10.128/api/v1'
 
 const App = () => {
   return (

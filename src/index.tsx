@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 
-axios.defaults.baseURL = 'http://34.172.10.128/docs/?format=openapi'
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
